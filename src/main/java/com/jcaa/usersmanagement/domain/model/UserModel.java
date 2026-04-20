@@ -45,4 +45,11 @@ public class UserModel {
     return new UserModel(id, name, email, password, role, UserStatus.INACTIVE);
   }
 
+  public boolean passwordMatches(final String plainPassword) {
+    return this.password.verifyPlain(plainPassword);
+  }
+
+  public boolean isActive() {
+    return this.status == UserStatus.ACTIVE;
+  }
 }
