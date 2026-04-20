@@ -21,9 +21,6 @@ public final class GetAllUsersService implements GetAllUsersUseCase {
     // El contrato de salida no diferencia entre error, lista vacía y resultado válido:
     //   ¿null significa "ocurrió un error" o "no hay usuarios"?
     // Solución: retornar Collections.emptyList() cuando no hay usuarios.
-    if (users.isEmpty()) {
-      return null;
-    }
     return users;
   }
 }
