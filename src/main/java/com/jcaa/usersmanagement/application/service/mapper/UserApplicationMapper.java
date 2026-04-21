@@ -16,12 +16,18 @@ import java.util.Objects;
 public class UserApplicationMapper {
 
   public static UserModel fromCreateCommandToModel(final CreateUserCommand command) {
+    final String userId    = command.id();
+    final String userName  = command.name();
+    final String userEmail = command.email();
+    final String userPass  = command.password();
+    final String userRole  = command.role();
+
     return UserModel.create(
-        new UserId(command.id()),
-        new UserName(command.name()),
-        new UserEmail(command.email()),
-        UserPassword.fromPlainText(command.password()),
-        UserRole.fromString(command.role()));
+        new UserId(userId),
+        new UserName(userName),
+        new UserEmail(userEmail),
+        UserPassword.fromPlainText(userPass),
+        UserRole.fromString(userRole));
   }
 
   public static UserModel fromUpdateCommandToModel(
