@@ -10,22 +10,20 @@ import com.jcaa.usersmanagement.domain.valueobject.UserId;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 @RequiredArgsConstructor
 public final class DeleteUserService implements DeleteUserUseCase {
 
-
-
   private final DeleteUserPort deleteUserPort;
   private final GetUserByIdPort getUserByIdPort;
   private final Validator validator;
 
   @Override
+  public void execute(final DeleteUserCommand command) {
     validateCommand(command);
     final UserId userId = UserApplicationMapper.fromDeleteCommandToUserId(command);
     ensureUserExists(userId);
